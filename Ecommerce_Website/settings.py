@@ -30,12 +30,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "jazzmin",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
 
     # Custom Apps
     "core",
@@ -128,3 +130,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+JAZZMIN_SETTINGS = {
+    'site_header': 'Ecommerce Website',
+    'site_title': 'Ecommerce Website',
+    'site_brand': 'Verry Gud',
+    # 'site_logo': 'logo.png',
+    'site_brand_href': 'https:,h//www.youtube.com/watch?v=dQw4w9WgXcQ',
+    'welcome_sign': 'Welcome to Ecommerce Website',
+}
