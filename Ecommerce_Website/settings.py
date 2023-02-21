@@ -38,9 +38,9 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 
-
     # Custom Apps
     "core",
+    "userauths",
 ]
 
 MIDDLEWARE = [
@@ -134,8 +134,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 JAZZMIN_SETTINGS = {
     'site_header': 'Ecommerce Website',
     'site_title': 'Ecommerce Website',
-    'site_brand': 'Verry Gud',
-    # 'site_logo': 'logo.png',
-    'site_brand_href': 'https:,h//www.youtube.com/watch?v=dQw4w9WgXcQ',
     'welcome_sign': 'Welcome to Ecommerce Website',
 }
+
+AUTH_USER_MODEL = 'userauths.User'
