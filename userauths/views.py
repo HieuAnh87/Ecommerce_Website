@@ -52,3 +52,9 @@ def login_view(request):
     context = {}
     return render(request, "userauths/sign-in.html", context)
 
+
+def logout_view(request):
+    logout(request)
+    print("User logged out")
+    messages.success(request, "You have been successfully logged out")
+    return redirect("core:index")
