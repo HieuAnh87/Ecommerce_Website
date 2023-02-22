@@ -16,6 +16,8 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="{% static 'assets/css/plugins/animate.min.css' %}" />
     <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+    <script src="{% static 'assets/js/vendor/modernizr-3.6.0.min.js' %}"></script>
+    <script src="{% static 'assets/js/vendor/jquery-3.6.0.min.js' %}"></script>
 </head>
 
 <body>
@@ -667,6 +669,18 @@
                         </div>
                     </div>
                 </div>
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <script>
+                    $(document).ready(function() {
+                        $('.alert').delay(3000).fadeOut('slow');
+                    });
+                </script>
             </div>
         </div>
     </header>

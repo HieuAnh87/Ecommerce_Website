@@ -38,19 +38,18 @@ def login_view(request):
         # Check if the user exists
         try:
             user = User.objects.get(email=email)
+            # Check if the user is authenticated
+            user = authenticate(request, username=email, password=password)
+            if user is not None:
+                login(request, user)
+                messages.success(request, f"Welcome back {user.username}")
+                return redirect("core:index")
+            else:
+                messages.warning(request, "Email or password is incorrect")
         except User.DoesNotExist:
             messages.warning(request, f"User with email {email} does not exist")
-            return redirect("userauths:login")
-        # Check if the user is authenticated
-        user = authenticate(request, username=email, password=password)
-        if user is not None:
-            login(request, user)
-            messages.success(request, f"Welcome back {user.username}")
-            return redirect("core:index")
-        else:
-            messages.warning(request, "Email or password is incorrect")
-    context = {}
-    return render(request, "userauths/sign-in.html", context)
+            return redirect("userauths:sign-in")
+    return render(request, "userauths/sign-in.html")
 
 
 def logout_view(request):
