@@ -23,7 +23,7 @@ def product_list_view(request):
 
 
 def category_list_view(request):
-    categories = Category.objects.all().annotate(total_products=Count('product'))
+    categories = Category.objects.all()
     context = {
         'categories': categories
     }

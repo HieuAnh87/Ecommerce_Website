@@ -109,7 +109,7 @@
                                         <div class="entry-meta font-xs color-grey mt-10 pb-10">
                                             <div>
 {#                                                <span class="post-on mr-10">25 April 2022</span>#}
-                                                <span class="hit-count mr-10">{{ category.category.count }} Product{{ c.category.count|pluralize }}</span>
+                                                <span class="hit-count mr-10">{{ category.category.count }} Product{{ category.category.count|pluralize }}</span>
 {#                                                <span class="hit-count has-dot">4 mins read</span>#}
                                             </div>
                                         </div>
@@ -149,9 +149,9 @@
                             <div class="sidebar-widget widget-category-2 mb-50">
                                 <h5 class="section-title style-1 mb-30">Category</h5>
                                 <ul>
-                                    {% for category in categories %}
+                                    {% for c in categories %}
                                     <li>
-                                        <a href="shop-grid-right.html"> <img src="{% static 'assets/imgs/theme/icons/category-1.svg' %}" alt="" />{{ category.title }}</a><span class="count">{{ category.total_products }}</span>
+                                        <a href="shop-grid-right.html"> <img src="{{ c.image.url }}" alt="" />{{ c.title }}</a><span class="count">{{ c.category.count }}</span>
                                     </li>
                                     {% endfor %}
                                 </ul>
