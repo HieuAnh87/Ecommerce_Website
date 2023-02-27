@@ -46,7 +46,7 @@
                             <div class="totall-product">
                                 <h2>
                                     <img class="w-36px mr-10" src="{% static 'assets/imgs/theme/icons/category-1.svg' %}" alt="" />
-                                    {{ categories.count }} Category{{ categories.count|pluralize }}
+                                    {{ categories.count }} Categories
                                 </h2>
                             </div>
                             <div class="sort-by-product-area">
@@ -94,7 +94,7 @@
                                 {% for category in categories %}
                                 <article class="col-xl-4 col-lg-6 col-md-6 text-center hover-up mb-30 animated">
                                     <div class="post-thumb">
-                                        <a href="blog-post-right.html">
+                                        <a href="{% url 'core:category_product_list' category.cid %}">
                                             <img class="border-radius-15" src="{{ category.image.url }}" alt="" />
                                         </a>
                                         <div class="entry-meta">
