@@ -67,10 +67,10 @@ def product_list_view(request):
 def product_detail_view(request, pid):
     product = Product.objects.get(pid=pid)
     category = Category.objects.get(cid=product.category.cid)
-    product_image = Product.product_images.all()
+    p_image = product.p_images.all()
     context = {
         'product': product,
         'category': category,
-        'product_images': product_image,
+        'p_image': p_image,
     }
     return render(request, "core/product_detail.html", context)
