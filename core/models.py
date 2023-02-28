@@ -37,6 +37,7 @@ class Vendor(models.Model):
                          alphabet="abcdefgh12345")
     title = models.CharField(max_length=100)
     image = models.ImageField(upload_to=user_directory_path)
+    cover_image = models.ImageField(upload_to=user_directory_path, default='vendor-header-bg.png')
     description = models.TextField(null=True, blank=True)
 
     address = models.CharField(max_length=100, default='123 Street')
@@ -46,6 +47,7 @@ class Vendor(models.Model):
     authentic_rating = models.CharField(max_length=100, default='100')
     days_return = models.CharField(max_length=100, default='100')
     warranty_period = models.CharField(max_length=100, default='100')
+    date_created = models.DateTimeField(auto_now_add=True, null=True, blank=True)
 
     # Using ForeignKey to link to User model,
     # on_delete=models.SET_NULL means if the user is deleted, the vendor will be set to null instead of deleting
@@ -96,7 +98,7 @@ class Product(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, related_name="category")
-    vendor = models.ForeignKey(Vendor, on_delete=models.SET_NULL, null=True)
+    vendor = models.ForeignKey(Vendor, on_delete=models.SET_NULL, null=True, related_name="vendor")
 
     title = models.CharField(max_length=100)
     image = models.ImageField(upload_to=user_directory_path)
