@@ -1,6 +1,6 @@
 from django.urls import path
 from core.views import index, product_list_view, category_list_view, category_product_list_view, vendor_list_view, \
-    vendor_detail_view
+    vendor_detail_view, product_detail_view
 
 app_name = "core"
 
@@ -9,6 +9,8 @@ urlpatterns = [
     path("", index, name="index"),
     # Product
     path("products/", product_list_view, name="product_list"),
+    # Product Detail
+    path("products/<pid>/", product_detail_view, name="product_detail"),
     # Category
     path("categories/", category_list_view, name="category_list"),
     # Category Detail

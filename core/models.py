@@ -140,9 +140,8 @@ class Product(models.Model):
 
 
 class ProductImages(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
-
     image = models.ImageField(upload_to="product-images", default="product.png")
+    product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True, related_name="product_images")
     date = models.DateTimeField(auto_now_add=True)
 
     class Meta:
