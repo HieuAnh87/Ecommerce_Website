@@ -91,14 +91,14 @@
                                             </div>
                                             <div class="font-xs">
                                                 <ul class="mr-50 float-start">
-                                                    <li class="mb-5">Type: <span class="text-brand">Organic</span></li>
-                                                    <li class="mb-5">MFG:<span class="text-brand"> Jun 4.2022</span></li>
-                                                    <li>LIFE: <span class="text-brand">70 days</span></li>
+                                                    <li class="mb-5">Type: <span class="text-brand">{{ product.type }}</span></li>
+                                                    <li class="mb-5">MFG: <span class="text-brand">{{ product.mfd | date:"d M, Y" }}</span></li>
+                                                    <li>LIFE: <span class="text-brand">{{ product.life }}</span></li>
                                                 </ul>
                                                 <ul class="float-start">
-                                                    <li class="mb-5">SKU: <a href="#">FWM15VKT</a></li>
+                                                    <li class="mb-5">SKU: <a href="#">{{ product.sku }}</a></li>
                                                     <li class="mb-5">Tags: <a href="#" rel="tag">Snack</a>, <a href="#" rel="tag">Organic</a>, <a href="#" rel="tag">Brown</a></li>
-                                                    <li>Stock:<span class="in-stock text-brand ml-5">8 Items In Stock</span></li>
+                                                    <li>Stock:<span class="in-stock text-brand ml-5">{{ product.stock_count }} Item{{ product.stock_count | pluralize }} In Stock</span></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -262,8 +262,8 @@
                                                     </div>
                                                 </div>
                                                 <ul class="contact-infor mb-50">
-                                                    <li><img src="{% static 'assets/imgs/theme/icons/icon-location.svg' %}" alt="" /><strong>Address: </strong> <span>5171 W Campbell Ave undefined Kent, Utah 53127 United States</span></li>
-                                                    <li><img src="{% static 'assets/imgs/theme/icons/icon-contact.svg' %}" alt="" /><strong>Contact Seller:</strong><span>(+91) - 540-025-553</span></li>
+                                                    <li><img src="{% static 'assets/imgs/theme/icons/icon-location.svg' %}" alt="" /><strong>Address: </strong> <span>{{ product.vendor.address }}</span></li>
+                                                    <li><img src="{% static 'assets/imgs/theme/icons/icon-contact.svg' %}" alt="" /><strong>Contact Seller: </strong><span>{{ product.vendor.contact }}</span></li>
                                                 </ul>
                                                 <div class="d-flex mb-55">
                                                     <div class="mr-30">
@@ -557,8 +557,13 @@
                                     <li>
                                         <i class="fi fi-rs-marker mr-10 text-brand"></i>
                                         <span>
-                                            5171 W Campbell Ave <br />
-                                            undefined Kent, Utah 53127 <br />United States
+                                            {{ address.address }} <br />
+                                            <br />
+                                            {% if address.status == True %}
+                                            <span class="text-success">Verified Address</span>
+                                            {% else %}
+                                             <span class="text-danger">Unverified Address</span>
+                                            {% endif %}
                                         </span>
                                         <a href="#" class="change float-end">Change</a>
                                     </li>
@@ -568,25 +573,25 @@
                                 <ul>
                                     <li>
                                         <i class="fi fi-rs-shield-check mr-10 text-brand"></i>
-                                        <span> 100% Authentic </span>
+                                        <span> {{ product.vendor.authentic_rating }}% Authentic </span>
                                     </li>
                                     <li>
                                         <i class="fi fi-rs-time-forward-ten mr-10 text-brand"></i>
-                                        <span> 10 Days Return </span>
+                                        <span> {{ product.vendor.days_return }} Days Return </span>
                                     </li>
                                     <li>
                                         <i class="fi fi-rs-diploma mr-10 text-brand"></i>
-                                        <span> 12 Months Warranty </span>
+                                        <span> {{ product.vendor.warranty_period }} Months Warranty </span>
                                     </li>
                                 </ul>
                             </div>
                             <div class="sidebar-widget widget-vendor mb-30 bg-grey-9 box-shadow-none">
                                 <h5 class="section-title style-3 mb-20">Vendor</h5>
                                 <div class="vendor-logo d-flex mb-30">
-                                    <img src="{% static 'assets/imgs/vendor/vendor-18.svg' %}" alt="" />
+                                    <img src="{{ product.vendor.image.url }}" alt="" />
                                     <div class="vendor-name ml-15">
                                         <h6>
-                                            <a href="vendor-details-2.html">Noodles Co.</a>
+                                            <a href="vendor-details-2.html">{{ product.vendor.title }}</a>
                                         </h6>
                                         <div class="product-rate-cover text-end">
                                             <div class="product-rate d-inline-block">
@@ -597,22 +602,22 @@
                                     </div>
                                 </div>
                                 <ul class="contact-infor">
-                                    <li><img src="{% static 'assets/imgs/theme/icons/icon-location.svg' %}" alt="" /><strong>Address: </strong> <span>5171 W Campbell Ave undefined Kent, Utah 53127 United States</span></li>
-                                    <li><img src="{% static 'assets/imgs/theme/icons/icon-contact.svg' %}" alt="" /><strong>Contact Seller:</strong><span>(+91) - 540-025-553</span></li>
+                                    <li><img src="{% static 'assets/imgs/theme/icons/icon-location.svg' %}" alt="" /><strong>Address: </strong> <span>{{ product.vendor.address }}</span></li>
+                                    <li><img src="{% static 'assets/imgs/theme/icons/icon-contact.svg' %}" alt="" /><strong>Contact Seller: </strong><span>{{ product.vendor.contact }}</span></li>
                                     <li class="hr"><span></span></li>
                                 </ul>
                                 <div class="d-flex justify-content-between">
                                     <div>
                                         <p class="text-brand font-xs">Rating</p>
-                                        <h4 class="mb-0">92%</h4>
+                                        <h4 class="mb-0">{{ product.vendor.authentic_rating }}%</h4>
                                     </div>
                                     <div>
                                         <p class="text-brand font-xs">Ship on time</p>
-                                        <h4 class="mb-0">100%</h4>
+                                        <h4 class="mb-0">{{ product.vendor.shipping_on_time }}%</h4>
                                     </div>
                                     <div>
                                         <p class="text-brand font-xs">Chat response</p>
-                                        <h4 class="mb-0">89%</h4>
+                                        <h4 class="mb-0">{{ product.vendor.chat_resp_time }}%</h4>
                                     </div>
                                 </div>
                                 <ul>
